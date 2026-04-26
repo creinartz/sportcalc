@@ -1,0 +1,98 @@
+.nav {
+  position: sticky; top: 0; z-index: 40;
+  background: color-mix(in oklab, var(--run-bg) 88%, transparent);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--run-line);
+}
+body.mode-cycling .nav { background: color-mix(in oklab, var(--cyc-bg) 85%, transparent); border-bottom-color: var(--cyc-line); }
+body.mode-outdoor .nav { background: color-mix(in oklab, var(--out-bg) 88%, transparent); border-bottom-color: var(--out-line); }
+body.mode-swim    .nav { background: color-mix(in oklab, var(--swim-bg) 90%, transparent); border-bottom-color: var(--swim-line); }
+body.mode-street  .nav { background: color-mix(in oklab, var(--str-bg) 88%, transparent); border-bottom-color: var(--str-line); }
+
+.nav-inner {
+  max-width: 1400px; margin: 0 auto;
+  padding: 14px 20px;
+  display: flex; align-items: center; gap: 18px;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.01em; border-radius: 10px; padding: 3px 6px 3px 2px; transition: background 0.15s; }
+.brand.active { background: color-mix(in oklab, var(--run-ink) 8%, transparent); }
+.brand-mark {
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  border-radius: 9px;
+  background: var(--run-ink); color: var(--run-bg);
+  font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 13px;
+}
+body.mode-cycling .brand-mark { background: var(--cyc-accent); color: var(--cyc-bg); }
+body.mode-outdoor .brand-mark { background: var(--out-accent); color: #0a1510; }
+body.mode-swim    .brand-mark { background: var(--swim-accent-deep); color: white; }
+body.mode-street  .brand-mark { background: var(--str-accent); color: white; }
+
+.brand-name { font-size: 17px; }
+.brand-name em { font-style: normal; color: var(--run-accent); }
+body.mode-cycling .brand-name em { color: var(--cyc-accent); }
+body.mode-outdoor .brand-name em { color: var(--out-accent); }
+body.mode-swim    .brand-name em { color: var(--swim-accent); }
+body.mode-street  .brand-name em { color: var(--str-accent); }
+
+.mode-switch {
+  display: flex; align-items: center;
+  background: var(--run-card); border: 1px solid var(--run-line);
+  border-radius: 999px; padding: 4px; gap: 2px;
+}
+body.mode-cycling .mode-switch { background: var(--cyc-card); border-color: var(--cyc-line); }
+body.mode-outdoor .mode-switch { background: var(--out-card); border-color: var(--out-line); }
+body.mode-swim    .mode-switch { background: var(--swim-card); border-color: var(--swim-line); }
+body.mode-street  .mode-switch { background: var(--str-card); border-color: var(--str-line); }
+
+.mode-switch button {
+  padding: 7px 16px; border-radius: 999px;
+  font-weight: 600; font-size: 13px;
+  color: var(--run-ink-2);
+  display: flex; align-items: center; gap: 7px;
+  transition: all 0.15s;
+}
+body.mode-cycling .mode-switch button { color: var(--cyc-ink-2); }
+body.mode-outdoor .mode-switch button { color: var(--out-ink-2); }
+body.mode-swim    .mode-switch button { color: var(--swim-ink-2); }
+body.mode-street  .mode-switch button { color: var(--str-ink-2); }
+
+.mode-switch button.active { background: var(--run-ink); color: var(--run-bg); }
+body.mode-cycling .mode-switch button.active { background: var(--cyc-accent); color: var(--cyc-bg); }
+body.mode-outdoor .mode-switch button.active { background: var(--out-accent); color: #0a1510; }
+body.mode-swim    .mode-switch button.active { background: var(--swim-accent-deep); color: white; }
+body.mode-street  .mode-switch button.active { background: var(--str-accent); color: white; }
+.mode-switch svg { width: 14px; height: 14px; }
+
+@media (max-width: 700px) {
+  .nav-inner { padding: 10px 12px; gap: 10px; }
+  .mode-switch button { padding: 7px 10px; gap: 0; }
+  .mode-switch button span { display: none; }
+  .mode-switch svg { width: 16px; height: 16px; }
+  .brand-name { display: none; }
+}
+
+.nav-spacer { flex: 1; }
+
+.lang-toggle {
+  display: flex; align-items: center;
+  border: 1px solid var(--run-line); border-radius: 8px; overflow: hidden;
+  background: var(--run-card);
+}
+body.mode-cycling .lang-toggle { background: var(--cyc-card); border-color: var(--cyc-line); }
+body.mode-outdoor .lang-toggle { background: var(--out-card); border-color: var(--out-line); }
+body.mode-swim    .lang-toggle { background: var(--swim-card); border-color: var(--swim-line); }
+body.mode-street  .lang-toggle { background: var(--str-card); border-color: var(--str-line); }
+
+.lang-toggle button { padding: 6px 10px; font-size: 12px; font-weight: 600; color: var(--run-ink-2); font-family: 'JetBrains Mono', monospace; }
+body.mode-cycling .lang-toggle button { color: var(--cyc-ink-2); }
+body.mode-outdoor .lang-toggle button { color: var(--out-ink-2); }
+body.mode-swim    .lang-toggle button { color: var(--swim-ink-2); }
+body.mode-street  .lang-toggle button { color: var(--str-ink-2); }
+
+.lang-toggle button.active { background: var(--run-ink); color: var(--run-bg); }
+body.mode-cycling .lang-toggle button.active { background: var(--cyc-accent); color: var(--cyc-bg); }
+body.mode-outdoor .lang-toggle button.active { background: var(--out-accent); color: #0a1510; }
+body.mode-swim    .lang-toggle button.active { background: var(--swim-accent-deep); color: white; }
+body.mode-street  .lang-toggle button.active { background: var(--str-accent); color: white; }

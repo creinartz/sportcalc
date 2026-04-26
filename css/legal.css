@@ -1,0 +1,70 @@
+.legal-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+  line-height: 1.6;
+}
+.legal-page h1 {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 24px;
+}
+.legal-page h2 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 32px 0 12px;
+}
+.legal-page h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 20px 0 8px;
+}
+.legal-page p, .legal-page ul {
+  color: var(--run-ink-2);
+  font-size: 15px;
+  margin: 0 0 12px;
+}
+.legal-page ul { padding-left: 20px; }
+.legal-page li { margin-bottom: 6px; }
+.legal-page a { color: var(--run-accent-deep); text-decoration: underline; }
+.legal-page strong { color: var(--run-ink); font-weight: 600; }
+.legal-page address {
+  font-style: normal;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  padding: 14px 16px;
+  background: var(--run-card);
+  border: 1px solid var(--run-line);
+  border-radius: 10px;
+  display: inline-block;
+  margin: 4px 0;
+}
+
+/* Anti-scraping: displays readable text to humans via bidi reversal,
+   bots reading raw HTML see reversed characters. */
+.unread {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  user-select: all;
+}
+.legal-page .back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--run-ink-2);
+  text-decoration: none;
+  margin-bottom: 24px;
+}
+.legal-page .back-link:hover { color: var(--run-ink); }
+.legal-page .updated {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--run-ink-3);
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid var(--run-line);
+}

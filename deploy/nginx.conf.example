@@ -1,0 +1,84 @@
+# Example nginx server config for SportCalc
+# Copy and adapt for your VPS. Intended for /etc/nginx/sites-available/sportcalc
+
+# ─── IP anonymization for GDPR ───
+# Replaces the last octet of IPv4 addresses with 0 (e.g. 203.0.113.42 → 203.0.113.0)
+# and the last 80 bits of IPv6 addresses with ::.
+# Place this in the http {} block of /etc/nginx/nginx.conf (NOT in the server block):
+#
+#   map $remote_addr $anon_ip {
+#     "~(?<ip>\d+\.\d+\.\d+)\.\d+"     $ip.0;
+#     "~(?<ip>[0-9a-f:]+:)[0-9a-f:]+"  $ip:;
+#     default                           0.0.0.0;
+#   }
+#
+#   log_format anonymized '$anon_ip - - [$time_local] "$request" '
+#                         '$status $body_bytes_sent "$http_referer" '
+#                         '"$http_user_agent"';
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name sportcalc.example.de;
+
+    # Redirect HTTP → HTTPS (required after certbot setup)
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name sportcalc.example.de;
+
+    root /var/www/sportcalc;
+    index index.html;
+
+    # ─── TLS (managed by certbot) ───
+    ssl_certificate     /etc/letsencrypt/live/sportcalc.example.de/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/sportcalc.example.de/privkey.pem;
+    ssl_protocols       TLSv1.2 TLSv1.3;
+    ssl_ciphers         HIGH:!aNULL:!MD5;
+
+    # ─── Security headers ───
+    add_header Strict-Transport-Security   "max-age=31536000; includeSubDomains" always;
+    add_header X-Content-Type-Options      "nosniff" always;
+    add_header X-Frame-Options             "SAMEORIGIN" always;
+    add_header Referrer-Policy             "strict-origin-when-cross-origin" always;
+    add_header Permissions-Policy          "geolocation=(), microphone=(), camera=()" always;
+    add_header Content-Security-Policy     "default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; script-src 'self'" always;
+
+    # ─── Logging with anonymized IPs ───
+    access_log /var/log/nginx/sportcalc-access.log anonymized;
+    error_log  /var/log/nginx/sportcalc-error.log warn;
+
+    # ─── Caching for static assets ───
+    location ~* \.(woff2|css|js)$ {
+        expires 30d;
+        add_header Cache-Control "public, immutable";
+    }
+
+    location / {
+        try_files $uri $uri.html $uri/ =404;
+    }
+
+    # ─── Clean URLs (optional) — /impressum → impressum.html ───
+    location = /impressum  { return 301 /impressum.html; }
+    location = /datenschutz { return 301 /datenschutz.html; }
+}
+
+# ─── Log rotation: 7 days retention ───
+# Create /etc/logrotate.d/sportcalc with this content:
+#
+#   /var/log/nginx/sportcalc-*.log {
+#       daily
+#       missingok
+#       rotate 7
+#       compress
+#       delaycompress
+#       notifempty
+#       create 0640 www-data adm
+#       sharedscripts
+#       postrotate
+#           [ -f /var/run/nginx.pid ] && kill -USR1 `cat /var/run/nginx.pid`
+#       endscript
+#   }

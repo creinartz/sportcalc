@@ -1,0 +1,64 @@
+:root {
+  /* Running (warm) */
+  --run-bg:           #fbf6f0;
+  --run-bg-2:         #f4ece0;
+  --run-ink:          #1a1410;
+  --run-ink-2:        #5a4a3a;
+  --run-line:         #e8ddc9;
+  --run-card:         #ffffff;
+  --run-accent:       oklch(0.68 0.16 45);
+  --run-accent-ink:   #2d1a0a;
+  --run-accent-soft:  oklch(0.93 0.05 55);
+  --run-accent-deep:  oklch(0.52 0.17 35);
+
+  /* Cycling / Zwift (cool dark) */
+  --cyc-bg:           #0b1220;
+  --cyc-bg-2:         #0f1a2e;
+  --cyc-card:         #141f35;
+  --cyc-card-2:       #1a2641;
+  --cyc-ink:          #e8edf5;
+  --cyc-ink-2:        #8a97b0;
+  --cyc-ink-3:        #7886a0;
+  --cyc-line:         #1f2b45;
+  --cyc-line-2:       #2a3855;
+  --cyc-accent:       oklch(0.82 0.15 210);
+  --cyc-accent-2:     oklch(0.78 0.15 155);
+  --cyc-accent-warn:  oklch(0.78 0.17 55);
+  --cyc-accent-red:   oklch(0.72 0.18 25);
+
+  /* Outdoor cycling (dark green) */
+  --out-bg:    #0e1a15;
+  --out-card:  #152219;
+  --out-ink:   #e6f2ea;
+  --out-ink-2: #8fb0a0;
+  --out-ink-3: #6a8b7b;
+  --out-line:  #1d2e24;
+  --out-accent: oklch(0.72 0.15 150);
+  --out-accent-soft: oklch(0.82 0.14 155);
+
+  /* Street / Freizeit (violet) */
+  --str-bg:          #f6f2fb;
+  --str-card:        #ffffff;
+  --str-ink:         #1c0a28;
+  --str-ink-2:       #6b4a88;
+  --str-ink-3:       #8a6aaa;
+  --str-line:        #e0d4ef;
+  --str-accent:      oklch(0.58 0.20 295);
+  --str-accent-deep: oklch(0.44 0.22 290);
+  --str-accent-soft: oklch(0.88 0.08 295);
+
+  /* Swim (light blue) */
+  --swim-bg:    #f0f7fb;
+  --swim-card:  #ffffff;
+  --swim-ink:   #0a2434;
+  --swim-ink-2: #3c5d70;
+  --swim-ink-3: #5d7e90;
+  --swim-line:  #d4e3ec;
+  --swim-accent:      oklch(0.55 0.13 220);
+  --swim-accent-deep: oklch(0.42 0.11 220);
+  --swim-accent-soft: oklch(0.92 0.05 210);
+
+  --radius:    14px;
+  --radius-sm: 10px;
+  --radius-lg: 20px;
+}

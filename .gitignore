@@ -1,0 +1,11 @@
+.DS_Store
+dev/
+
+# Local contact data — contains real personal info, never commit
+js/contact.js
+
+# Design handoff files — local only
+HeroC-Homepage.html
+
+# Claude session data — local only
+.claude/
